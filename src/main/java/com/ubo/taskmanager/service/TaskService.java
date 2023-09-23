@@ -31,8 +31,9 @@ public class TaskService {
         Task task = new Task(
                 request.title(),
                 request.description(),
-                request.prioritiy(),
-                request.status()
+                request.priority(),
+                request.status(),
+                request.team()
         );
         return converter.convert(taskRepository.save(task));
     }
