@@ -14,14 +14,14 @@ data class Member(
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     val id: String,
     val firstName: String,
     val lastName: String,
 
     @ManyToOne(fetch = FetchType.LAZY ,cascade = [CascadeType.ALL])
     @JoinColumn(name = "team_id", nullable = false)
-    val team: Team
+    val team: Team?
 ){
     constructor(firstName: String,lastName: String,team: Team) : this(
         "",

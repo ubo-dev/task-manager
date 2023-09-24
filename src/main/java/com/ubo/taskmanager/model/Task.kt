@@ -9,23 +9,24 @@ data class Task(
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    var id : String? = "",
+    var id : String = "",
     var title: String?,
     var description: String?,
     var priority: Priority? = Priority.URGENT,
     var status: Status? = Status.OPEN,
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
-    @JoinColumn(name = "team_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @JoinColumn(name = "team_id", nullable = true)
     var team: Team?
 ) {
-    constructor(title: String?, description: String?, priority: Priority?, status: Status?,team: Team?) : this(
+
+    constructor(title: String, description: String) : this(
         "",
         title = title,
         description = description,
-        priority = priority,
-        status = status,
-        team = team
+        priority = Priority.URGENT,
+        status = Status.OPEN,
+        null
     ) {
 
     }

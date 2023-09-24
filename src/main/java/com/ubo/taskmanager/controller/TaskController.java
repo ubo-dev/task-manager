@@ -7,6 +7,8 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/v1/task")
 public class TaskController {
@@ -25,6 +27,11 @@ public class TaskController {
     @GetMapping("/{id}")
     public ResponseEntity<TaskDto> getTaskById(@PathVariable String id) {
         return ResponseEntity.ok(taskService.getTaskById(id));
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<TaskDto>> getAllTasks() {
+        return ResponseEntity.ok(taskService.getAllTasks());
     }
 
 }

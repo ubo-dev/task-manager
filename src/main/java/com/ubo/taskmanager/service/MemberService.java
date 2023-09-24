@@ -3,6 +3,7 @@ package com.ubo.taskmanager.service;
 import com.ubo.taskmanager.dto.MemberDto;
 import com.ubo.taskmanager.dto.MemberRequest;
 import com.ubo.taskmanager.dto.converter.MemberDtoConverter;
+import com.ubo.taskmanager.exception.MemberNotFoundException;
 import com.ubo.taskmanager.model.Member;
 import com.ubo.taskmanager.repository.MemberRepository;
 import org.springframework.stereotype.Service;
@@ -27,4 +28,10 @@ public class MemberService {
 
         return converter.convert(memberRepository.save(member));
     }
+
+    public MemberDto getMemberById(String id) {
+        return converter.convert(memberRepository.findById(id).
+                orElseThrow(() -> new MemberNotFoundException("Member not found with id:" + id)));
+    }
+
 }

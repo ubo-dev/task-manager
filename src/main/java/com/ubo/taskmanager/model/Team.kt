@@ -8,12 +8,12 @@ data class Team(
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    val id: String,
-    val name: String,
+    val id: String?,
+    val name: String?,
 
     @OneToMany(mappedBy = "team", fetch = FetchType.EAGER)
-    val member: Set<Member>,
+    val member: Set<Member>?,
 
-    @OneToMany(mappedBy = "task", fetch = FetchType.EAGER)
-    val task: Set<Task>
+    @OneToMany(mappedBy = "team", fetch = FetchType.EAGER)
+    val task: Set<Task>?
 )
