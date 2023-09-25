@@ -1,10 +1,11 @@
 package com.ubo.taskmanager.controller;
 
+import com.ubo.taskmanager.dto.MemberAssignRequest;
 import com.ubo.taskmanager.dto.MemberDto;
 import com.ubo.taskmanager.dto.MemberRequest;
+import com.ubo.taskmanager.dto.MemberTaskDto;
 import com.ubo.taskmanager.service.MemberService;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,11 @@ public class MemberController {
     @GetMapping("/{id}")
     public ResponseEntity<MemberDto> getMemberById(@PathVariable String id) {
         return ResponseEntity.ok(memberService.getMemberById(id));
+    }
+
+    @PatchMapping("/{memberId}/assignMemberToTeam/{teamId}")
+    public ResponseEntity<MemberTaskDto> assignMemberToTeam(@PathVariable String memberId, @PathVariable String teamId) {
+        return ResponseEntity.ok(memberService.assignMemberToTeam(memberId,teamId));
     }
 
 }

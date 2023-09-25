@@ -2,15 +2,15 @@ package com.ubo.taskmanager.service;
 
 import com.ubo.taskmanager.dto.TaskDto;
 import com.ubo.taskmanager.dto.TaskRequest;
+import com.ubo.taskmanager.dto.TeamDto;
 import com.ubo.taskmanager.dto.converter.TaskDtoConverter;
 import com.ubo.taskmanager.exception.TaskNotFoundException;
 import com.ubo.taskmanager.model.Task;
 import com.ubo.taskmanager.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class TaskService {
@@ -24,8 +24,12 @@ public class TaskService {
         this.converter = converter;
     }
 
-    public TaskDto getTaskById(String id) {
-        return converter.convert(taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException("Task not found with id :" + id)));
+    protected Task findTaskById(String id) {
+        return taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException("Task not found with id :" + id));
+    }
+
+    public TaskDto getTaskById(String taskId) {
+        return converter.convert(findTaskById(taskId));
     }
 
     public TaskDto createTask(TaskRequest request) {
@@ -40,8 +44,8 @@ public class TaskService {
         taskRepository.delete(taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException("Task not found with id: " + id)));
     }
 
-    public List<TaskDto> getAllTasks() {
-        return converter.convertList(taskRepository.findAll());
+    public Set<TaskDto> getAllTasks() {
+        return converter.convertList(new HashSet<>(taskRepository.findAll()));
     }
 }
 

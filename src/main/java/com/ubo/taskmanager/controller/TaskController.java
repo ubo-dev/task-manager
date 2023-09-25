@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/v1/task")
@@ -30,7 +31,7 @@ public class TaskController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<TaskDto>> getAllTasks() {
+    public ResponseEntity<Set<TaskDto>> getAllTasks() {
         return ResponseEntity.ok(taskService.getAllTasks());
     }
 

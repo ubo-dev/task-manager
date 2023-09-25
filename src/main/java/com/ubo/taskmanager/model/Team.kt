@@ -16,4 +16,13 @@ data class Team(
 
     @OneToMany(mappedBy = "team", fetch = FetchType.EAGER)
     val task: Set<Task>?
-)
+) {
+    constructor(name: String) : this(
+        "",
+        name = name,
+        member = null,
+        task = null
+    ) {
+
+    }
+}

@@ -20,14 +20,14 @@ data class Member(
     val lastName: String,
 
     @ManyToOne(fetch = FetchType.LAZY ,cascade = [CascadeType.ALL])
-    @JoinColumn(name = "team_id", nullable = false)
+    @JoinColumn(name = "team_id", nullable = true)
     val team: Team?
 ){
-    constructor(firstName: String,lastName: String,team: Team) : this(
+    constructor(firstName: String,lastName: String) : this(
         "",
         firstName = firstName,
         lastName = lastName,
-        team = team
+        null
     ) {
 
     }

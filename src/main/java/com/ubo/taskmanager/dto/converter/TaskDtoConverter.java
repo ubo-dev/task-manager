@@ -4,7 +4,7 @@ import com.ubo.taskmanager.dto.TaskDto;
 import com.ubo.taskmanager.model.Task;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
@@ -20,7 +20,7 @@ public class TaskDtoConverter {
         );
     }
 
-    public List<TaskDto> convertList(List<Task> from) {
-        return from.stream().map(this::convert).collect(Collectors.toList());
+    public Set<TaskDto> convertList(Set<Task> from) {
+        return from.stream().map(this::convert).collect(Collectors.toSet());
     }
 }
