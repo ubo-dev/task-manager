@@ -1,6 +1,5 @@
 package com.ubo.taskmanager.controller;
 
-import com.ubo.taskmanager.dto.MemberAssignRequest;
 import com.ubo.taskmanager.dto.MemberDto;
 import com.ubo.taskmanager.dto.MemberRequest;
 import com.ubo.taskmanager.dto.MemberTaskDto;

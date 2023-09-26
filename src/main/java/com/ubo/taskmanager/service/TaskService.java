@@ -25,7 +25,8 @@ public class TaskService {
     }
 
     protected Task findTaskById(String id) {
-        return taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException("Task not found with id :" + id));
+        return taskRepository.findById(id)
+                .orElseThrow(() -> new TaskNotFoundException("Task not found with id :" + id));
     }
 
     public TaskDto getTaskById(String taskId) {
@@ -41,7 +42,8 @@ public class TaskService {
     }
 
     public void deleteTask(String id) {
-        taskRepository.delete(taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException("Task not found with id: " + id)));
+        taskRepository.delete(taskRepository.findById(id)
+                .orElseThrow(() -> new TaskNotFoundException("Task not found with id: " + id)));
     }
 
     public Set<TaskDto> getAllTasks() {

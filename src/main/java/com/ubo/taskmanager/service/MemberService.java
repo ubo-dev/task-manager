@@ -19,7 +19,8 @@ public class MemberService {
     private final MemberTaskDtoConverter memberTaskDtoConverter;
     private final TeamService teamService;
 
-    public MemberService(MemberRepository memberRepository, MemberDtoConverter converter, MemberTaskDtoConverter memberTaskDtoConverter, TeamService teamService) {
+    public MemberService(MemberRepository memberRepository, MemberDtoConverter converter,
+                         MemberTaskDtoConverter memberTaskDtoConverter, TeamService teamService) {
         this.memberRepository = memberRepository;
         this.memberTaskDtoConverter = memberTaskDtoConverter;
         this.converter = converter;

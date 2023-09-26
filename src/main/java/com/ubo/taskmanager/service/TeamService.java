@@ -27,7 +27,8 @@ public class TeamService {
     }
 
     protected Team findTeamById(String id) {
-        return teamRepository.findById(id).orElseThrow(() -> new TeamNotFoundException("Team not found with id:" + id));
+        return teamRepository.findById(id)
+                .orElseThrow(() -> new TeamNotFoundException("Team not found with id:" + id));
     }
 
     public TeamDto getTeamById(String teamId) {
