@@ -15,7 +15,6 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
     private final MemberDtoConverter converter;
-
     private final MemberTaskDtoConverter memberTaskDtoConverter;
     private final TeamService teamService;
 

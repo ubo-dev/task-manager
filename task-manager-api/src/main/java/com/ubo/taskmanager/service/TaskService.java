@@ -6,6 +6,7 @@ import com.ubo.taskmanager.dto.TeamDto;
 import com.ubo.taskmanager.dto.converter.TaskDtoConverter;
 import com.ubo.taskmanager.exception.TaskNotFoundException;
 import com.ubo.taskmanager.model.Task;
+import com.ubo.taskmanager.model.Team;
 import com.ubo.taskmanager.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +18,12 @@ public class TaskService {
 
     private final TaskRepository taskRepository;
     private final TaskDtoConverter converter;
+    private final TeamService teamService;
 
-
-    public TaskService(TaskRepository taskRepository,TaskDtoConverter converter) {
+    public TaskService(TaskRepository taskRepository, TaskDtoConverter converter, TeamService teamService) {
         this.taskRepository = taskRepository;
         this.converter = converter;
+        this.teamService = teamService;
     }
 
     protected Task findTaskById(String id) {
@@ -48,6 +50,23 @@ public class TaskService {
 
     public Set<TaskDto> getAllTasks() {
         return converter.convertList(new HashSet<>(taskRepository.findAll()));
+    }
+
+    public TaskDto assignTaskToTeam(String taskId, String teamId) {
+        Task task = findTaskById(taskId);
+
+        return converter.convert(
+                taskRepository.save(
+                        new Task(
+                                task.getId(),
+                                task.getTitle(),
+                                task.getDescription(),
+                                task.getPriority(),
+                                task.getStatus(),
+                                Objects.requireNonNull(teamService.findTeamById(teamId))
+                        )
+                )
+        );
     }
 }
 

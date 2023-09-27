@@ -4,9 +4,13 @@ import com.ubo.taskmanager.dto.TeamDto;
 import com.ubo.taskmanager.dto.TeamRequest;
 import com.ubo.taskmanager.dto.converter.TeamDtoConverter;
 import com.ubo.taskmanager.exception.TeamNotFoundException;
+import com.ubo.taskmanager.model.Task;
 import com.ubo.taskmanager.model.Team;
 import com.ubo.taskmanager.repository.TeamRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.Objects;
+import java.util.Set;
 
 @Service
 public class TeamService {
@@ -34,4 +38,5 @@ public class TeamService {
     public TeamDto getTeamById(String teamId) {
         return converter.convert(findTeamById(teamId));
     }
+
 }

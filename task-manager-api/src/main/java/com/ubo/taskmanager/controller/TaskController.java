@@ -2,6 +2,7 @@ package com.ubo.taskmanager.controller;
 
 import com.ubo.taskmanager.dto.TaskDto;
 import com.ubo.taskmanager.dto.TaskRequest;
+import com.ubo.taskmanager.dto.TeamDto;
 import com.ubo.taskmanager.service.TaskService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +34,11 @@ public class TaskController {
     @GetMapping()
     public ResponseEntity<Set<TaskDto>> getAllTasks() {
         return ResponseEntity.ok(taskService.getAllTasks());
+    }
+
+    @PatchMapping("/{taskId}/assignTaskToTeam/{teamId}")
+    public ResponseEntity<TaskDto> assignTaskToTeam(@PathVariable String taskId, @PathVariable String teamId) {
+        return ResponseEntity.ok(taskService.assignTaskToTeam(taskId,teamId));
     }
 
 }
