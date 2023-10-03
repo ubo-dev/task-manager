@@ -4,17 +4,23 @@ import { useState } from "react";
 import TeamForm from "@/components/teamform";
 import React from "react";
 import MemberForm from "@/components/memberForm";
+import TaskForm from "@/components/taskForm";
 
 export default function Home() {
   const [toggleTeam, setToggleTeam] = useState(false);
   const [toggleMember, setToggleMember] = useState(false);
+  const [toggleTask, setToggleTask] = useState(false);
 
   function toggleTeamForm() {
-    setToggleTeam(!toggleTeam)
+    setToggleTeam(!toggleTeam);
   }
 
   function toggleMemberForm() {
-    setToggleMember(!toggleMember)
+    setToggleMember(!toggleMember);
+  }
+
+  function toggleTaskForm() {
+    setToggleTask(!toggleTask);
   }
 
   return (
@@ -30,17 +36,22 @@ export default function Home() {
           </h2>
 
           <div className="pt-12 flex flex-row items-center">
-            <button 
-            onClick={toggleTeamForm}
-            className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+            <button
+              onClick={toggleTeamForm}
+              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+            >
               Create Team
             </button>
-            <button 
-            onClick={toggleMemberForm}
-            className="ml-20 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+            <button
+              onClick={toggleMemberForm}
+              className="ml-20 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+            >
               Create Member
             </button>
-            <button className="ml-20 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+            <button
+              onClick={toggleTaskForm}
+              className="ml-20 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+            >
               Create Task
             </button>
           </div>
@@ -48,6 +59,8 @@ export default function Home() {
           <TeamForm isToggled={toggleTeam}></TeamForm>
 
           <MemberForm isToggled={toggleMember}></MemberForm>
+
+          <TaskForm isToggled={toggleTask}></TaskForm>
         </div>
       </main>
     </>
