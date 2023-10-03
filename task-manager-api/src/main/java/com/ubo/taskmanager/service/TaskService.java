@@ -2,16 +2,14 @@ package com.ubo.taskmanager.service;
 
 import com.ubo.taskmanager.dto.TaskDto;
 import com.ubo.taskmanager.dto.TaskRequest;
-import com.ubo.taskmanager.dto.TeamDto;
 import com.ubo.taskmanager.dto.converter.TaskDtoConverter;
 import com.ubo.taskmanager.exception.TaskNotFoundException;
+import com.ubo.taskmanager.model.Status;
 import com.ubo.taskmanager.model.Task;
-import com.ubo.taskmanager.model.Team;
 import com.ubo.taskmanager.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class TaskService {
@@ -68,5 +66,15 @@ public class TaskService {
                 )
         );
     }
+
+    public TaskDto updateTaskStatus(String taskId, Status status) {
+        Task task = findTaskById(taskId);
+        task.setStatus(status);
+        return converter.convert(
+                taskRepository.save(task)
+        );
+    }
 }
+
+
 

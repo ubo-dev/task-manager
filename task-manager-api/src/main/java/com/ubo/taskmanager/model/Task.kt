@@ -12,7 +12,11 @@ data class Task(
     var id : String = "",
     var title: String?,
     var description: String?,
+
+    @Enumerated(EnumType.STRING)
     var priority: Priority? = Priority.URGENT,
+
+    @Enumerated(EnumType.STRING)
     var status: Status? = Status.OPEN,
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
